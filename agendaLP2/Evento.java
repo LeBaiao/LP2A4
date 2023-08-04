@@ -1,57 +1,28 @@
 package agendaLP2;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Evento extends AgendaFuncoes{
 	
-	public String nome;
 	public String descricao;
-	public Date dataHora;
 	public String local;
-	public Lembrete lembrete;
+	private static List<Evento> eventos = new ArrayList<>();
 	
 	
-	public Evento() {
-		super();
-		//dar uma olhada em herança como faz depois
+	public Evento(String nome, String descricaoEvento, Date dataHoraEvento, boolean repeticaoEvento, String local) {
+		super(nome, dataHoraEvento, repeticaoEvento);
+		this.descricao = descricaoEvento;
+		this.local = local;
 	}
-	public boolean repeticao;
-	
 
-	public Evento(String nome, String descricao, Date dataHora, String local, Lembrete lembrete, boolean repeticao) {
-	super();
-	this.nome = nome;
-	this.descricao = descricao;
-	this.dataHora = dataHora;
-	this.local = local;
-	this.lembrete = lembrete;
-	this.repeticao = repeticao;
-	}
-	
-	
-	public boolean isRepeticao() {
-		return repeticao;
-	}
-	public void setRepeticao(boolean repeticao) {
-		this.repeticao = repeticao;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	public Date getDataHora() {
-		return dataHora;
-	}
-	public void setDataHora(Date dataHora) {
-		this.dataHora = dataHora;
 	}
 
 	public String getLocal() {
@@ -60,11 +31,47 @@ public class Evento extends AgendaFuncoes{
 	public void setLocal(String local) {
 		this.local = local;
 	}
-	public Lembrete getLembrete() {
-		return lembrete;
+	
+	public static boolean atualizarEvento(String nome, Date dataHoraEvento, String detalhesEvento, boolean repeteEvento) {
+		Evento evento = buscarEvento(nome);
+		if(evento != null) {
+			evento.setNome(nome);
+			evento.setDataHora(dataHoraEvento);
+			evento.setDescricao(detalhesEvento);
+			evento.setRepeticao(repeteEvento);
+			return true;
+		}else return false;
 	}
-	public void setLembrete(Lembrete lembrete) {
-		this.lembrete = lembrete;
+	
+	public static boolean excluirEvento(String nome) {
+		Evento evento = buscarEvento(nome);
+		if(evento != null) {
+			eventos.remove(evento);
+			return true;
+		}else return false;
 	}
-
+	
+	public static Evento buscarEvento(String nome) {
+		for(Evento evento : eventos) {
+			if(evento.getNome().equalsIgnoreCase(nome)) {
+				return evento;
+			}
+		}
+		return null;
+	}
+	
+	public static List<Evento> consultarEventosByData(Date dataHoraEvento){
+		List<Evento> eventosPorData = new ArrayList<>();
+		for (Evento evento : eventos) {
+			if(evento.getDataHora().equals(dataHoraEvento)) {
+				eventosPorData.add(evento);
+			}
+		}
+		return eventosPorData;
+	}
+	
+	
+	
+	
+	
 }

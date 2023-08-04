@@ -34,8 +34,8 @@ public class Agenda {
 		case 2: 
 			System.out.println("----------------EVENTOS--------------------");
 			System.out.println("Digite o número com a sua opção desejada");
-			System.out.println("5- Consultar um evento");
-			System.out.println("6- Criar Evento");
+			System.out.println("5- Criar Evento");
+			System.out.println("6- Consultar um evento");
 			System.out.println("7- Atualizar Evento");
 			System.out.println("8- Excluir Evento");
 			break;
@@ -75,7 +75,7 @@ public class Agenda {
                 break;
                 
 			case 2:
-				System.out.println("Digite a data e horário para consultar a tarefa desejada, no formato DD/MM/YYYY HH:mm respectivamente: "); //arrumar isso aqui pra só pesquisar pela data 
+				System.out.println("Digite a data e horário para consultar a tarefa desejada, no formato DD/MM/YYYY HH:mm respectivamente: ");  
 				String strDataHoraConsultaTarefa = sc.nextLine();
 				dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 				Date dataConsultaTarefa = dateFormat.parse(strDataHoraConsultaTarefa);
@@ -130,14 +130,84 @@ public class Agenda {
 			        System.out.println("Falha na exclusão, tarefa não encontrada :(");
 			    }
 			    break;
-			case 5:
+			    
+			case 5: //criar
+				System.out.println("Digite o nome do Evento");
+				String nomeEvento = sc.nextLine();
+				System.out.println("Digite o dia e horário do evento no formato DD/MM/YYYY HH:mm"); 
+				String strDataHoraEvento = sc.nextLine();
+				System.out.println("Digite os detalhes do evento");
+				String descricaoEvento = sc.nextLine();
+				System.out.println("Digite o local do evento");
+				String localEvento = sc.nextLine();
+				System.out.println("O evento se repete diariamente? Responda com true ou false");
+				boolean repeticaoEvento = sc.nextBoolean();
+				
+				dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+				Date dataHoraEvento = dateFormat.parse(strDataHoraEvento);
+
+                Evento evento = new Evento(nomeEvento, descricaoEvento, dataHoraEvento, repeticaoEvento, localEvento );
+                System.out.println("Evento criado!");
 				break;
-			case 6:
+				
+			case 6: //consultar 
+				
+				System.out.println("Digite a data e horário para consultar o evento desejado, no formato DD/MM/YYYY HH:mm respectivamente: "); 
+				String strDataHoraConsultaEvento = sc.nextLine();
+				dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+				Date dataConsultaEvento = dateFormat.parse(strDataHoraConsultaEvento);
+				
+				List<Evento> eventosByData = Evento.consultarEventosByData(dataConsultaEvento);
+                if (eventosByData.isEmpty()) {
+                    System.out.println("Não há eventos cadastrados para a data informada.");
+                } else {
+					System.out.println("Tarefa encontrada: " + strDataHoraConsultaEvento + ":");
+                    for (Evento eventosPorData : eventosByData) {
+                    	 System.out.println(eventosPorData);
+                    }
+				}
 				break;
-			case 7:
+				
+			case 7: //atualizar 
+			    System.out.println("Digite o nome do evento que deseja atualizar:");
+			    String nomeEventoAtualizar = sc.nextLine();
+
+			    Evento eventoAtualizar = Evento.buscarEvento(nomeEventoAtualizar);
+			    if (eventoAtualizar == null) {
+			        System.out.println("Evento não encontrado.");
+			    } else {
+			        System.out.println("Digite a nova data e horario do evento no formato dd/MM/yyyy HH:mm: ");
+			        String strNovaDataHorarioEvento = sc.nextLine();
+			        System.out.println("Digite os novos detalhes do evento:");
+			        String novosDetalhesEvento = sc.nextLine();
+			        System.out.println("O evento se repete? responda com true para sim e false para não:");
+			        boolean novaRepeticaoEvento = sc.nextBoolean();
+
+			        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			        Date novaDataHorario = dateFormat.parse(strNovaDataHorarioEvento);
+
+
+			        if (Evento.atualizarEvento(nomeEventoAtualizar, novaDataHorario, novosDetalhesEvento, novaRepeticaoEvento)) {
+			            System.out.println("Tarefa atualizada com sucesso:");
+			            System.out.println(eventoAtualizar);
+			        } else {
+			            System.out.println("Falha ao atualizar a tarefa. Tarefa não encontrada.");
+			        }
+			    }
+				
 				break;
-			case 8:
+				
+			case 8: //excluir
+			    System.out.println("Digite o nome do evento que deseja excluir:");
+			    String nomeEventoExcluir = sc.nextLine();
+
+			    if (Tarefa.excluirTarefa(nomeEventoExcluir)) {
+			        System.out.println("Evento excluído com sucesso.");
+			    } else {
+			        System.out.println("Falha na exclusão, evento não encontrado :(");
+			    }
 				break;
+				
 			case 9: //criar
 				System.out.println("Digite o nome do Lembrete");
 				String nomeLembrete = sc.nextLine();

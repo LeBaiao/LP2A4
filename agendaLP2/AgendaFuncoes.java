@@ -9,6 +9,13 @@ public class AgendaFuncoes {
 	private boolean repeticao;
 	
 	
+	
+	public AgendaFuncoes(String nome, Date dataHora, boolean repeticao) {
+		super();
+		this.nome = nome;
+		this.dataHora = dataHora;
+		this.repeticao = repeticao;
+	}
 	public String getNome() {
 		return nome;
 	}

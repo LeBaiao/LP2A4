@@ -6,17 +6,11 @@ import java.util.List;
 
 public class Lembrete extends AgendaFuncoes {
 	
-	public String nome;
-	public Date dataHora;
-	public boolean lembreteRepeticao = false;
 	private static List<Lembrete> lembretes = new ArrayList<>();
 	
 	
 	public Lembrete(String nome, Date dataHora, boolean lembreteRepeticao) {
-		super();
-		this.nome = nome;
-		this.dataHora = dataHora;
-		this.lembreteRepeticao = lembreteRepeticao;
+		super(nome, dataHora, lembreteRepeticao);
 		lembretes.add(this);
 	}
 	
@@ -56,22 +50,5 @@ public class Lembrete extends AgendaFuncoes {
 		return lembretesPorData;
 	}
 	
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public Date getDataHora() {
-		return dataHora;
-	}
-	public void setDataHora(Date dataHora) {
-		this.dataHora = dataHora;
-	}
-	
-	public void setRepeticao(boolean repeticao) {
-		this.lembreteRepeticao = repeticao;
-	}
 
 }
