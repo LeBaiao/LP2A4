@@ -35,7 +35,7 @@ public class FuncionarioController {
             if (f.getId() == id){
                 funcionarios.remove(f);
             } else {
-                System.out.println("ID do prato inválido!");
+                System.out.println("ID do funcionario inválido!");
             }
         }
     }
@@ -54,7 +54,7 @@ public class FuncionarioController {
     public void updateFuncionario(@RequestBody FuncionarioResponseDTO funcionarioResponseDTO){
         Funcionario funcionario = findFuncionario(funcionarioResponseDTO.id());
         if (funcionario == null) {
-            System.out.println("ID do prato inválido!");
+            System.out.println("ID do funcionário inválido!");
         } else {
             funcionario.setNome(funcionarioResponseDTO.nome());
             funcionario.setCpf(funcionarioResponseDTO.cpf());

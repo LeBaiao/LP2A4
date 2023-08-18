@@ -8,4 +8,6 @@ public class EnderecoController {
 
     @Autowired
     EnderecoRepository enderecoRepository;
+
+
 }
