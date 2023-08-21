@@ -21,7 +21,8 @@ public class CardapioController {
 
     @GetMapping
     public List<CardapioResponseDTO> getAll() {
-        return cardapioRepository.findAll().stream().map(CardapioResponseDTO::new).toList();
+        return cardapioRepository.findAll() //busca uma lista de pratos
+                .stream().map(CardapioResponseDTO::new).toList(); //converte para DTO
     }
 
     @PostMapping
