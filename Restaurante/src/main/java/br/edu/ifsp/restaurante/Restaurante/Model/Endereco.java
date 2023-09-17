@@ -1,6 +1,6 @@
 package br.edu.ifsp.restaurante.Restaurante.Model;
 
-import br.edu.ifsp.restaurante.Restaurante.Repository.EnderecoRequestDTO;
+import br.edu.ifsp.restaurante.Restaurante.dto.EnderecoRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

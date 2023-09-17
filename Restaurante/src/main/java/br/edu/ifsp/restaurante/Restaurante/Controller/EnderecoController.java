@@ -1,11 +1,9 @@
 package br.edu.ifsp.restaurante.Restaurante.Controller;
 
 import br.edu.ifsp.restaurante.Restaurante.Model.Endereco;
-import br.edu.ifsp.restaurante.Restaurante.Repository.ClienteRepository;
 import br.edu.ifsp.restaurante.Restaurante.Repository.EnderecoRepository;
-import br.edu.ifsp.restaurante.Restaurante.Repository.EnderecoRequestDTO;
-import br.edu.ifsp.restaurante.Restaurante.Repository.EnderecoResponseDTO;
-import br.edu.ifsp.restaurante.Restaurante.dto.PedidoResponseDTO;
+import br.edu.ifsp.restaurante.Restaurante.dto.EnderecoRequestDTO;
+import br.edu.ifsp.restaurante.Restaurante.dto.EnderecoResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

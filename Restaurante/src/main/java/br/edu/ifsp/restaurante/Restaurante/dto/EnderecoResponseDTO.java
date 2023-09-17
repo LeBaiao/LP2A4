@@ -1,4 +1,4 @@
-package br.edu.ifsp.restaurante.Restaurante.Repository;
+package br.edu.ifsp.restaurante.Restaurante.dto;
 
 import br.edu.ifsp.restaurante.Restaurante.Model.Endereco;
 import br.edu.ifsp.restaurante.Restaurante.dto.ClienteResponseDTO;
