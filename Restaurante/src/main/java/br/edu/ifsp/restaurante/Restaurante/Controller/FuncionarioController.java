@@ -2,6 +2,8 @@ package br.edu.ifsp.restaurante.Restaurante.Controller;
 
 import br.edu.ifsp.restaurante.Restaurante.Model.Funcionario;
 import br.edu.ifsp.restaurante.Restaurante.Repository.FuncionarioRepository;
+import br.edu.ifsp.restaurante.Restaurante.dto.ClienteResponseDTO;
+import br.edu.ifsp.restaurante.Restaurante.dto.FuncionarioRequestDTO;
 import br.edu.ifsp.restaurante.Restaurante.dto.FuncionarioResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,43 +23,45 @@ public class FuncionarioController {
 
     @GetMapping
     public List<FuncionarioResponseDTO> getAll() {
-        return funcionarios.stream().map(FuncionarioResponseDTO::new).toList();
+        return funcionarioRepository.findAll().stream().map(FuncionarioResponseDTO::new).toList();
     }
 
     @PostMapping
     public void addFuncionario(@RequestBody Funcionario funcionario){
-        funcionarios.add(funcionario);
+        funcionarioRepository.save(funcionario);
     }
 
     @DeleteMapping("/{id}")
     public void removeFuncionario(@PathVariable Integer id){
-        for (Funcionario f : funcionarios) {
-            if (f.getId() == id){
-                funcionarios.remove(f);
-            } else {
-                System.out.println("ID do funcionario inválido!");
-            }
+        try{
+            funcionarioRepository.deleteById(id);
+        }catch(Exception e){
+            System.out.println("Ocorreu um erro: " + e.getMessage());
         }
+
     }
 
     @GetMapping("/{id}")
     public Funcionario findFuncionario(@PathVariable Integer id) {
-        for (Funcionario f : funcionarios) {
-            if (f.getId() == id) {
-                return f;
-            }
+        if (funcionarioRepository.findById(id).isEmpty()) {
+            System.out.println("Funcionario não encontrado");
+            return null;
+        }else {
+            return funcionarioRepository.findById(id).get();
         }
-        return null;
     }
 
-    @PutMapping
-    public void updateFuncionario(@RequestBody FuncionarioResponseDTO funcionarioResponseDTO){
-        Funcionario funcionario = findFuncionario(funcionarioResponseDTO.id());
-        if (funcionario == null) {
-            System.out.println("ID do funcionário inválido!");
-        } else {
-            funcionario.setNome(funcionarioResponseDTO.nome());
-            funcionario.setCpf(funcionarioResponseDTO.cpf());
-        }
+    @PutMapping("/{id}")
+    public void updateFuncionario(@PathVariable Integer id, @RequestBody FuncionarioRequestDTO data){
+       try{
+           Funcionario funcionario = new Funcionario(data);
+           funcionario.setId(id);
+           funcionarioRepository.save(funcionario);
+       }catch (Exception e){
+           System.out.println("Ocorreu um erro ao atualizar o funcionário: " + e.getMessage());
+       }
     }
-}
+
+
+    }
+

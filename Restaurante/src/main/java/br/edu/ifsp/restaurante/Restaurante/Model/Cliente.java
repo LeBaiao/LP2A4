@@ -11,22 +11,20 @@ import org.hibernate.annotations.Cascade;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "Cliente")
-@Entity(name = "Cliente")
+@Data //Lombok, gera automaticamente getters e setters, hashcode, equals, tostring
+@NoArgsConstructor //gera automaticamente um construtor vazio
+@AllArgsConstructor //gera automaticamente um construtor que aceita todos os campos
+@Table(name = "Cliente") //associa a classe a uma tabela
+@Entity(name = "Cliente") //define a classe como uma entidade do Banco de Dados
 public class Cliente {
 
 
-    public Cliente(ClienteRequestDTO clienteRequestDTO){
-        this.nome = clienteRequestDTO.nome();
-        this.endereco = clienteRequestDTO.endereco();
-        //colocar os pedidos
-       /* this.nome = cardapioRequestDTO.nome();
-        this.descricao = cardapioRequestDTO.descricao();
-        this.preco = cardapioRequestDTO.preco();*/
+    public Cliente(ClienteRequestDTO data){
+        this.nome = data.nome();
+        this.endereco = data.endereco();
+        this.pedidos = data.pedidos();
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -34,7 +32,7 @@ public class Cliente {
     @Column
     private String nome;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL) //relacionamento
     @JoinColumn(name = "endereco_id")//cria uma chave estrangeira na tabela cliente para se relacionar com endereco
     private Endereco endereco;
 

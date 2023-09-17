@@ -17,10 +17,10 @@ import java.util.List;
 @Entity(name = "Pedido")
 public class Pedido {
 
-    public Pedido(String descricao, Cliente cliente, List<Prato> pratos) {
-        this.descricao = descricao;
-        this.cliente = cliente;
-        this.pratos = pratos;
+    public Pedido(PedidoRequestDTO data) {
+        this.descricao = data.descricao();
+        this.cliente = data.cliente();
+        this.pratos = data.pratos();
     }
 
 

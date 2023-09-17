@@ -20,6 +20,7 @@ public class Prato {
         this.nome = data.nome();
         this.descricao = data.descricao();
         this.preco = data.preco();
+        this.pedidos = data.pedidos();
     }
 
     @Id
@@ -34,7 +35,6 @@ public class Prato {
 
     @ManyToMany(mappedBy = "pratos")//mapeado pelo atributo de lista pratos da classe Pedido
     private List<Pedido> pedidos;
-
 
 
 }
