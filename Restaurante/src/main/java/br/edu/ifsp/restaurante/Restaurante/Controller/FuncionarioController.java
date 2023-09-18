@@ -27,8 +27,8 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public void addFuncionario(@RequestBody Funcionario funcionario){
-        funcionarioRepository.save(funcionario);
+    public void addFuncionario(@RequestBody FuncionarioRequestDTO data){
+        funcionarioRepository.save(new Funcionario(data));
     }
 
     @DeleteMapping("/{id}")
