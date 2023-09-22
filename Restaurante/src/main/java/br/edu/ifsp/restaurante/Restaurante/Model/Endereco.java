@@ -1,5 +1,6 @@
 package br.edu.ifsp.restaurante.Restaurante.Model;
 
+import br.edu.ifsp.restaurante.Restaurante.dto.EnderecoRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +13,14 @@ import lombok.NoArgsConstructor;
 @Entity(name = "Endereco")
 public class Endereco {
 
+
+    public Endereco(EnderecoRequestDTO data) {
+        this.id = id;
+        this.rua = rua;
+        this.cidade = cidade;
+        this.cliente = cliente;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,5 +31,7 @@ public class Endereco {
     @Column
     private String cidade;
 
+    @OneToOne(mappedBy = "endereco")
+    private Cliente cliente;
 
 }
