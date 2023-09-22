@@ -12,12 +12,15 @@ public class Cliente1 {
             Scanner scanner = new Scanner(System.in);
 
 
-            ClienteThread1 clienteThread = new ClienteThread1(socket);
+            ClienteThread clienteThread = new ClienteThread(socket);
             clienteThread.start();                                          //o método start tem a lógica de receber a mensagem
+
             PrintStream saida = new PrintStream(socket.getOutputStream()); //permite enviar dados para o outro lado da conexão
+
+
             while (true) {
                 String teclado = scanner.nextLine();
-                saida.println(teclado);
+                saida.println(teclado);//envia mensagens para o servidor
             }
         }catch (Exception e){
             e.printStackTrace();
