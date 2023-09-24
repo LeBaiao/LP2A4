@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>ClasseServlet</servlet-name> <!-- o nome do servlet tem que bater com o nome embaixo também-->
+    <servlet-class>servlets.CadastroServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClasseServlet</servlet-name>
+    <url-pattern>/cadastro</url-pattern><!-- url inicial do projeto-->
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ListagemGeralServlet</servlet-name> <!-- o nome do servlet tem que bater com o nome embaixo também-->
+    <servlet-class>servlets.ListagemGeralServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListagemGeralServlet</servlet-name>
+    <url-pattern>/listagem</url-pattern><!-- url inicial do projeto-->
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ListagemUnicaServlet</servlet-name> <!-- o nome do servlet tem que bater com o nome embaixo também-->
+    <servlet-class>servlets.ListagemUnicaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListagemUnicaServlet</servlet-name>
+    <url-pattern>/cliente</url-pattern><!-- url inicial do projeto-->
+  </servlet-mapping>
+
+
+</web-app>
+
+
+<!-- se eu quiser adiionar outras ficaria assim -->
+<!--  <servlet>
+    <servlet-name>AddClienteServlet</servlet-name>
+    <servlet-class>AddClienteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddClienteServlet</servlet-name>
+    <url-pattern>/cadastrar</url-pattern>
+  </servlet-mapping>
+-->
