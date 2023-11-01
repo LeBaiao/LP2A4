@@ -31,7 +31,7 @@ public class Atividade {
     @Column
     private LocalTime horario;
 
-    @ManyToMany(mappedBy = "atividades")
+    @ManyToMany(mappedBy = "atividades") //n participantes podem participar de n atividades
     private List<Participante> participantes;
 
 }
