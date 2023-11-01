@@ -58,7 +58,7 @@ public class PedidoController {
         }
     }
 
-    @PutMapping("/{id}") //terminar
+    @PutMapping("/{id}")
     public void updatePedido(@PathVariable Integer id, @RequestBody PedidoRequestDTO data) {
        Pedido pedido = new Pedido(data);
        pedido.setId(id);
