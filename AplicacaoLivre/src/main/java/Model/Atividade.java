@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data                           //Lombok, gera automaticamente getters e setters, hashcode, equals, tostring
@@ -15,23 +17,39 @@ import java.util.List;
 @Entity(name = "Atividade")     //define a classe como uma entidade do Banco de Dados
 public class Atividade {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAtividade;
+    private static Long idClasse = 0L;
+    private Long idAtividade;
 
-    @Column
-    private String nome;
-
-    @Column
     private String descricao;
 
-    @Column
-    private LocalDate data;
+    private LocalDate dia;
 
-    @Column
-    private LocalTime horario;
+    private LocalTime hora;
 
-    @ManyToMany(mappedBy = "atividades") //n participantes podem participar de n atividades
-    private List<Participante> participantes;
+    private List<Usuario> participantes = new ArrayList<>();
 
+
+    public Atividade(String descricao, LocalDate dia, LocalTime hora) {
+        this.descricao = descricao;
+        this.dia = dia;
+        this.hora = hora;
+        this.idAtividade = idClasse++;
+    }
+
+    public void adicionaParticipante(Usuario usuario){
+        participantes.add(usuario);
+    }
+
+    public String getDia() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return dia.format(formatter);
+    }
+
+    public String getHora() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return hora.format(formatter);
+    }
+    public List<Usuario> getParticipantes() {
+        return participantes;
+    }
 }

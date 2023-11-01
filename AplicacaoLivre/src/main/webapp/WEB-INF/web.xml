@@ -4,25 +4,4 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
   <display-name>Archetype Created Web Application</display-name>
-
-
-  <servlet>
-    <servlet-name>CadastroAtividadeServlet</servlet-name> <!-- o nome do servlet tem que bater com o nome embaixo também-->
-    <servlet-class>Servlet.CadastroAtividadeServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CadastroAtividadeServlet</servlet-name>
-    <url-pattern>/cadastroAtividade</url-pattern><!-- url inicial do projeto-->
-  </servlet-mapping>
-
-<!--  <servlet>-->
-<!--    <servlet-name>ClasseServlet</servlet-name> &lt;!&ndash; o nome do servlet tem que bater com o nome embaixo também&ndash;&gt;-->
-<!--    <servlet-class>servlets.CadastroServlet</servlet-class>-->
-<!--  </servlet>-->
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>ClasseServlet</servlet-name>-->
-<!--    <url-pattern>/cadastro</url-pattern>&lt;!&ndash; url inicial do projeto&ndash;&gt;-->
-<!--  </servlet-mapping>-->
-
-
 </web-app>
