@@ -32,7 +32,7 @@ public class CadastroServlet extends HttpServlet {
 //        para obter os valores dos parâmetros passados em uma solicitação HTTP. Esses parâmetros podem ser
 //        passados pela URL (no caso de solicitações GET) ou no corpo da solicitação (no caso de solicitações POST).
 
-        System.out.println("socorro deus funciona");
+
 
         Cliente cliente = new Cliente(nome, telefone, cpf, dataNascimento);
         ClienteRepository.addCliente(cliente);                                 //adiciona na repository para poder manipular depois
